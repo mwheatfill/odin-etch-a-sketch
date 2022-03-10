@@ -1,0 +1,36 @@
+/*
+GLOBAL STYLES
+*/
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  width: 960px
+}
+.canvas {
+  display: flex;
+  flex-flow: column;
+  gap: 0.2rem;
+
+}
+
+.canvas-row {
+  display: flex;
+  flex-flow: row;
+  gap: 0.2rem;
+}
+
+.canvas-item {
+  width: auto;
+  height: auto;
+  padding: 1rem;
+  background-color: rgb(237, 237, 237);
+}
+
+.mouse-over {
+  background-color: rgb(128, 128, 128);
+}
