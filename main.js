@@ -40,7 +40,7 @@ function changeColor(e) {
 function clear(e) {
   clearGrid();
   gridItems = Number(prompt('Enter the number of grid squares per row'));
-  createGrid(gridItems);
+  createGrid(gridItems > 100 ? 100 : gridItems);
 }
 
 // create the grid when the page refreshes
