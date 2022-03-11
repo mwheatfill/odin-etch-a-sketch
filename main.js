@@ -1,4 +1,4 @@
-//function that accepts 2 numbers to create an x by y grid
+//function that accepts a number to create an x by y grid of equal rows and columns
 const createGrid = (tiles) => {
   const container = document.querySelector('.container');
   const canvas = document.createElement('div');
@@ -14,8 +14,8 @@ const createGrid = (tiles) => {
       tile.classList.add('canvas-item');
       row.appendChild(tile);
     }
-
   }
+  
   container.appendChild(canvas);
 
   //add event listener for mouseover to each grid square
@@ -26,20 +26,40 @@ const createGrid = (tiles) => {
   });
 };
 
+// clears the grid by removing the canvas
 const clearGrid = () => {
   const container = document.querySelector('.container');
   const canvas = document.querySelector('.canvas');
   let removeCanvas = container.removeChild(canvas);
-  console.log(removeCanvas);
 };
 
+// generates a random hex value for the initial tile color
 function changeColor(e) {
-  e.target.classList.add('mouse-over');
+  if (!e.target.style.backgroundColor) {
+    let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    e.target.style.backgroundColor = `#${randomColor}`;
+  } else {
+    e.target.style.backgroundColor = addShade(
+      e.target.style.backgroundColor,
+      10
+    );
+  }
 }
 
+// adds a percentage (represented in integer form) to a CSS rgb value
+function addShade(rgbValue, percent) {
+  const rgbArray = rgbValue.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1);
+  const shadedRgbArray = rgbArray.map(
+    (n) => n - Math.round(n * (percent / 100))
+  );
+
+  return `rgb(${shadedRgbArray.join(', ')})`;
+}
+
+// event listener to clear the canvas and create a blank canvas
 function clear(e) {
   clearGrid();
-  gridItems = Number(prompt('Enter the number of grid squares per row'));
+  const gridItems = Number(prompt('Enter the number of grid squares per row'));
   createGrid(gridItems > 100 ? 100 : gridItems);
 }
 
