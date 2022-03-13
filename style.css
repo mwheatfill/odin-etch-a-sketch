@@ -48,3 +48,10 @@ body {
 .mouse-over {
   background-color: rgb(128, 128, 128);
 }
+
+#clear {
+  padding: 1rem 2rem;
+  border: none;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
